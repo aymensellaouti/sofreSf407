@@ -1,0 +1,30 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
+</head>
+
+<body>
+    {% for message in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% for message in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% for message in app.session.flashbag.get('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <ol class="list-group">
+    {% for todoName, todoContent in app.session.get('todos')  %}
+        <li class="list-group-item">
+            {{ todoName }} : {{ todoContent }}
+        </li>
+    {% endfor %}
+    </ol>
+</body>
+</html>
