@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 if (VvvebTheme === undefined) var VvvebTheme = {};
 
 VvvebTheme.Cart = {
