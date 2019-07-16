@@ -1,24 +1,7 @@
-<html>
-<head>
-    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
-</head>
+{% extends 'base.html.twig' %}
 
-<body>
-    {% for message in app.session.flashbag.get('info') %}
-    <div class="alert alert-info">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% for message in app.session.flashbag.get('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% for message in app.session.flashbag.get('error') %}
-    <div class="alert alert-danger">
-        {{ message }}
-    </div>
-    {% endfor %}
+{% block body %}
+
     <ol class="list-group">
     {% for todoName, todoContent in app.session.get('todos')  %}
         <li class="list-group-item">
@@ -26,5 +9,4 @@
         </li>
     {% endfor %}
     </ol>
-</body>
-</html>
+{% endblock %}

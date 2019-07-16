@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<table>
+{% for element in tab %}
+<tr>
+    <td>{{ element }}</td>
+</tr>
+{% endfor %}
+</table>
+
+Min : {{ min(tab) }}<br>
+Max : {{ max(tab) }}<br>
+Nombre d'éléments : {{ tab|length }}<br>
+
+<img src="{{ asset('/images/as.jpg'|defaultImage) }}" alt="default">
+
+{% endblock %}
+
+{% block title %}
+   {{ parent() }} | Twig Filter
+{% endblock %}
