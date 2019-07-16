@@ -9,14 +9,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class PersonneController extends AbstractController
 {
     /**
-     * @Route("/personne/{name}", name="personne")
+     * @Route("/personne/{name}/{age<\d{1,2}>}/{section<gl|rt>}/{langue<fr|en>}/{_format?html}",
+     *      name="personne"
+     * )
      */
-    public function index(Request $request, $name)
+    public function index(Request $request, $name, $age, $section, $langue, $_format)
     {
-        dump($request);
+        dump($_format);
+        dump($langue);
         return $this->render('personne/index.html.twig', [
             'controller_name' => 'PersonneController',
             'name' => $name,
+            'age' => $age,
+            'section' => $section
         ]);
     }
 

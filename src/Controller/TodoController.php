@@ -7,10 +7,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class TodoController
+ * @package App\Controller
+ * @Route("/todo")
+ */
 class TodoController extends AbstractController
 {
     /**
-     * @Route("/todos", name="todo")
+     * @Route("/", name="todo")
      */
     public function index(Request $request, SessionInterface $session)
     {
@@ -33,7 +38,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/add/{name}/{content}", name="todo.add")
+     * @Route("/add/{name}/{content}", name="todo.add")
      */
     public function addTodo(Request $request, $name, $content) {
         $session = $request->getSession();
@@ -53,7 +58,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/delete/{name}", name="todo.delete")
+     * @Route("/delete/{name}", name="todo.delete")
      */
     public function deleteTodo(Request $request, $name) {
         $session = $request->getSession();
@@ -73,7 +78,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/update/{name}/{content}", name="todo.update")
+     * @Route("/update/{name}/{content}", name="todo.update")
      */
     public function updateTodo(Request $request, $name, $content) {
         $session = $request->getSession();
@@ -93,7 +98,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todos/reset", name="todo.reset")
+     * @Route("/reset", name="todo.reset")
      */
     public function resetTodo(Request $request) {
         $session = $request->getSession();
