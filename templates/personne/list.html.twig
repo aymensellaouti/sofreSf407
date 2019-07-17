@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for personne in personnes %}
+        {% if loop.index is odd %}
+            <div class="row">
+        {% endif %}
+        <div class="col p-3 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">{{ personne.name }}</h3>
+            <div class="mb-1 text-muted">{{ personne.firstname }}</div>
+            <p class="card-text mb-auto">{{ personne.age }}</p>
+        </div>
+        <div class="col p-3 d-flex flex-column position-static">
+            <img class="rounded-circle" width="150px" height="150px"  src="{{ asset('/images/'~personne.path) }}" alt="">
+        </div>
+        {% if loop.index is even %}
+            </div>
+        {% endif %}
+        {% if loop.last and loop.index is odd %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+

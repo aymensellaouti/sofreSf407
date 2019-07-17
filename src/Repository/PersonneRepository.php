@@ -22,19 +22,24 @@ class PersonneRepository extends ServiceEntityRepository
     // /**
     //  * @return Personne[] Returns an array of Personne objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByNameOrdredFirstname($name, $maxResult = 5, $order = 0)
     {
+        if ($order) {
+            $order = 'Desc';
+        } else {
+            $order = 'Asc';
+        }
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.name = :name')
+            ->setParameter('name', $name)
+            ->orderBy('p.firstname', $order )
+            ->setMaxResults($maxResult)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Personne

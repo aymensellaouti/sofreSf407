@@ -63,9 +63,36 @@ class PersonneController extends AbstractController
     }
 
     /**
-     * @Route("/personne/cv")
+     * @Route("/detail/{id}", name="personne.detail")
      */
-    public function test() {
+    public function findPersonne(Personne $personne=null) {
+        if($personne)
+            return $this->render('personne/index.html.twig',
+                array(
+                'personne' => $personne
+            ));
+        $this->addFlash('error', 'personne innexistante');
+        return $this->forward('App\Controller\PersonneController::list');
+    }
 
+    /**
+     * @Route("/list", name="personne.list")
+     */
+    public function list(){
+        $personnes = $this->getDoctrine()->getRepository(Personne::class)->findAll();
+        return $this->render('personne/list.html.twig', array(
+            'personnes' => $personnes
+        ));
+    }
+
+    /**
+     * @Route("/find/{name}", name="personne.find.name")
+     */
+    public function findName($name) {
+        $repository = $this->getDoctrine()->getRepository(Personne::class);
+        $personnes = $repository->findByNameOrdredFirstname($name);
+        return $this->render('personne/list.html.twig', array(
+            'personnes' => $personnes
+        ));
     }
 }
