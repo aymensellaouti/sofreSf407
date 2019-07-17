@@ -1,17 +1,17 @@
-<html>
-<head>
-    <title>Action</title>
-    <head>
-        <link rel="stylesheet" href="{{ asset('../node_modules/bootstrap/dist/css/bootstrap.css') }}">
-    </head>
+{% extends 'base.html.twig' %}
 
-</head>
-<body>
-    <h1>Hello {{ controller_name }}! {{ name }} ✅</h1>
-    <div class="alert alert-success">
-        CC
+{% block body %}
+
+    <div class="row">
+    <div class="col p-4 d-flex flex-column position-static">
+        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <h3 class="mb-0">{{ personne.name }}</h3>
+        <div class="mb-1 text-muted">{{ personne.firstname }}</div>
+        <p class="card-text mb-auto">{{ personne.age }}</p>
     </div>
-    name : {{ name }} <br>
-    age : {{ age }}
-</body>
-</html>
+        <div class="col p-4 d-flex flex-column position-static">
+            <img class="rounded-circle" width="150px" height="150px"  src="{{ asset('/images/'~personne.path) }}" alt="">
+        </div>
+    </div>
+
+{% endblock %}

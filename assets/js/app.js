@@ -17,5 +17,5 @@ import $ from 'jquery';
 import 'popper.js';
 import 'bootstrap';
 import './main'
-
+import './logger'
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

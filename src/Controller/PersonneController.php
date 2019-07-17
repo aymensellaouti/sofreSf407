@@ -2,26 +2,63 @@
 
 namespace App\Controller;
 
+use App\Entity\Personne;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class PersonneController
+ * @package App\Controller
+ * @Route("/personne")
+ */
 class PersonneController extends AbstractController
 {
     /**
-     * @Route("/personne/{name}/{age<\d{1,2}>}/{section<gl|rt>}/{langue<fr|en>}/{_format?html}",
+     * @Route("/add/{name}/{firstname}/{age<\d{1,2}>}/{cin}/{path}",
      *      name="personne"
      * )
      */
-    public function index(Request $request, $name, $age, $section, $langue, $_format)
+    public function index(Request $request, $name, $firstname, $age, $cin, $path)
     {
-        dump($_format);
-        dump($langue);
+        $personne = new Personne();
+        $personne->setName($name);
+        $personne->setFirstname($firstname);
+        $personne->setCin($cin);
+        $personne->setAge($age);
+        $personne->setPath($path);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($personne);
+        $em->flush();
         return $this->render('personne/index.html.twig', [
-            'controller_name' => 'PersonneController',
-            'name' => $name,
-            'age' => $age,
-            'section' => $section
+            'personne' => $personne
+        ]);
+    }
+
+    /**
+     * @Route("/update/{id}/{name}/{firstname}/{age<\d{1,2}>}/{cin}/{path}",
+     *      name="personne"
+     * )
+     */
+    public function update(Request $request, Personne $personne=null, $name, $firstname, $age, $cin, $path)
+    {
+
+        if(!$personne) {
+            $this->addFlash('error', 'Personne innexistante impossible de la mettre à jour');
+            return $this->redirectToRoute('todo');
+        }
+        $personne->setName($name);
+        $personne->setFirstname($firstname);
+        $personne->setCin($cin);
+        $personne->setAge($age);
+        $personne->setPath($path);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($personne);
+        $em->flush();
+        return $this->render('personne/index.html.twig', [
+            'personne' => $personne
         ]);
     }
 
