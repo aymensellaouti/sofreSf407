@@ -6,6 +6,7 @@ use App\Traits\TimeStampTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormationRepository")
@@ -34,11 +35,14 @@ class Formation
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="vous devez mentionner une date")
+     *
      */
     private $dateDebut;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual(propertyPath="dateDebut", message="vous ne pouvez pas avoir une date de fin inférieur à la date de début" )
      */
     private $dateFin;
 

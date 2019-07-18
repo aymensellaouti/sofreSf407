@@ -24,7 +24,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('test', './assets/js/test.js')
+    .addEntry('select', './assets/js/select.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     .copyFiles({

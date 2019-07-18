@@ -18,7 +18,7 @@ trait TimeStampTrait
      * @ORM\PrePersist()
      */
     public function updateCreatedAt() {
-       $this->setCreatedAt(\DateTime("Now"));
+       $this->setCreatedAt(new \DateTime("NOW"));
     }
 
     /**

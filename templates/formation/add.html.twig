@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block js %}
+    {{ encore_entry_script_tags('select') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('select') }}
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form,{ 'attr' : {'novalidate': 'novalidate'} }) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
